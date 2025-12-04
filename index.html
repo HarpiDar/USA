@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Texte à trous coloré</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>RDB</h2>
+
+    <p>
+        Le <input type="text" id="t1" placeholder="Entrez un mot..."> est la capitale de la France.<br><br>
+        La tour <input type="text" id="t2" placeholder="Entrez un mot..."> se situe à Paris.
+    </p>
+
+    <button onclick="check()">Vérifier</button>
+    <p id="result"></p>
+</div>
+
+<script>
+function check() {
+    const answers = {
+        t1: "Paris",
+        t2: "Eiffel"
+    };
+    
+    let score = 0;
+    for (let id in answers) {
+        const input = document.getElementById(id).value.trim();
+        if (input.toLowerCase() === answers[id].toLowerCase()) {
+            score++;
+            document.getElementById(id).style.borderColor = "#4CAF50"; // Vert correct
+        } else {
+            document.getElementById(id).style.borderColor = "#E63946"; // Rouge incorrect
+        }
+    }
+    document.getElementById("result").innerText = "Score : " + score + "/2";
+}
+</script>
+
+</body>
+</html>
